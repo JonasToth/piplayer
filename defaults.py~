@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+from raspberrypi_control.settings import DEFAULT_APP_SETTINGS as defaults
+
+def insertDefault(appsettings, appname):
+	s = appsettings
+	try:
+		if s.APP_NAME == app:
+			pass
+		else:
+			s.APP_NAME = app
+			print "Warning: Appname was wrong in settings file for %s" % app
+	except AttributeError:
+		s.APP_NAME = app
+	
+	try:
+		if s.APP_AUTHOR:
+			pass
+	except AttributeError:
+		s.APP_AUTHOR = defaults['APP_AUTHOR']
+		
+	try:
+		if s.APP_TITLE:
+			pass
+	except AttributeError:
+		s.APP_TITLE = app
+	
+	try:
+		if s.APP_URL:
+			pass
+	except AttributeError:
+		s.APP_URL 	= app
+		
+	try:
+		if s.APP_DEFAULT_BOX:
+			pass
+	except AttributeError:
+		s.APP_DEFAULT_BOX = defaults['APP_DEFAULT_BOX']
+		
+	return s

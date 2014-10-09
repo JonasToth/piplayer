@@ -1,0 +1,34 @@
+#playerui
+{
+	float: left;
+}
+
+#playerui input
+{
+	background: white;
+	
+	height: 5px;
+	padding: 0;
+	margin: 0;
+	
+	border: 0;
+	
+	
+	color: black;
+}
+
+#currently_playing
+{
+	font-weight: bold;
+}
+
+#volumeControlForm
+{
+	display: inline;
+}
+
+
+#seekerForm
+{
+	display: inline;
+}
