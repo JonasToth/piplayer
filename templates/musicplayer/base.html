@@ -1,0 +1,56 @@
+{% extends "app_base.html" %}
+{% load raspberry_design %}
+
+{% block additional_css %}
+	{{ block.super }}
+	<link rel="stylesheet" type="text/css" href="/static/musicplayer/stylesheet/application.css" />
+{% endblock %}
+
+{% block additional_js %}
+	{{ block.super }}
+	<script src="/static/musicplayer/javascript/application.js"></script>
+	<script>
+		// this script contains all url for controlling
+		// its for abstraction of the urlhandling and to not hardcode urls
+		// in the javascript
+		
+		PLAYER_URL_PLAY 		= "{% url 'continue_playing' %}";
+		PLAYER_URL_STOP 		= "{% url 'stop_playing' %}";
+		PLAYER_URL_SHUFFLE		= "{% url 'shuffle_playlist' %}";
+		PLAYER_URL_PREVIOUS		= "{% url 'previous_title' %}";
+		PLAYER_URL_NEXT			= "{% url 'next_title' %}";
+		//PLAYER_URL_RANDOM_MODE	= "{# url '' %}";
+		//PLAYER_URL_REPEAT_MODE	= "{# url '' %}";
+		/*PLAYER_URL_ = "";
+		PLAYER_URL_ = "";
+		PLAYER_URL_ = "";
+		PLAYER_URL_ = "";
+		PLAYER_URL_ = "";
+		PLAYER_URL_ = "";
+		PLAYER_URL_ = "";*/
+	</script>
+
+{% endblock %}
+
+{% block app_navi %}
+	<ul>
+		{% if perms.musicplayer.can_view %}
+		<li><a href="{% url 'player_index' %}">Home</a></li>
+		{% endif %}
+		{% if perms.musicplayer.change_channel %}
+		<li><a href="{% url 'player_edit_radio' %}">Manage RadioChannels</a></li>
+		{% endif %}
+		{% if perms.musicplayer.change_album %}
+		<li><a href="{% url 'player_edit_album' %}">Manage Albums</a></li>
+		{% endif %}
+		{% if perms.musicplayer.add_band %}
+		<li><a href="{% url 'player_edit_band' %}">Manage Bands</a></li>
+		{% endif %}
+		{% if perms.musicplayer.change_title %}
+		<li><a href="{% url 'player_edit_title' %}">Manage Titles</a></li>
+		{% endif %}
+		{% if perms.musicplayer.change_playlist %}
+		<li><a href="{% url 'player_edit_playlist' %}">Manage Playlists</a></li>
+		{% endif %}
+	</ul>
+{% endblock %}

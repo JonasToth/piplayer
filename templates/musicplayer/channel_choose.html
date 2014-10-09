@@ -1,0 +1,29 @@
+{% extends 'musicplayer/base.html' %}
+
+{% comment %}
+This Template is generate by the generate_template.py script.
+It extends the AppBase Template, which should be generated if you generate your Apps
+with generate.py or generate_app.py.
+{% endcomment %}
+{% load raspberry_design %}
+
+{% block app_content %}
+	{% content_box huge_auto_rect %}
+
+	<form action="" method="post">
+	{% csrf_token %}
+	<table>
+		{% for channel in channels %}
+			<tr>
+				<td><input type="checkbox" id="channel-{{ channel.id }}" name="channel-{{ channel.id }}"{% if channel in ownchannels %} checked {% endif %}/></td>					<td><label for="channel-{{ channel.id }}">{{ channel.name }}</label></td>
+			</tr>
+		{% endfor %}
+			<tr>
+			<td></td>
+			<td><input type="submit" value="Auswählen" /></td>
+		</tr>
+	</table>
+	</form>
+
+	{% endcontent_box %}
+{% endblock %}

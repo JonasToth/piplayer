@@ -1,0 +1,22 @@
+<div id="playerui">
+	<div id="currently_playing">
+		{% if currently_playing %}
+			{{ currently_playing }}
+		{% endif %}
+	</div>
+	<button class="control_button" onclick="next();" href="">Previous</button>
+	<button class="control_button" onclick="play();" href="{% url 'continue_playing' %}">Play</button>
+	<button class="control_button" onclick="stop();" href="{% url 'stop_playing' %}">Stop</button>
+	<button class="control_button" href="">Next</button>
+	<button class="control_button" href="">Random</button>
+	<button class="control_button" onclick="shuffle();" href="">Shuffle</button>
+	<button class="control_button" href="">RepeatMode</button>
+				
+	<form id="volumeControlForm">
+		<input type="range" name="volumeControl" min="0" max="100" value="100" onchange="updateVolume(this.value);" />
+	</form>
+		
+	<form id="seekerForm">
+		<input type="range" name="seeker" min="0" max="100" />
+	</form>
+</div>

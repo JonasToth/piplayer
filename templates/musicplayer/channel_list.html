@@ -1,0 +1,28 @@
+{% extends 'musicplayer/base.html' %}
+
+{% comment %}
+This Template is generate by the generate_template.py script.
+It extends the AppBase Template, which should be generated if you generate your Apps
+with generate.py or generate_app.py.
+{% endcomment %}
+{% load raspberry_design %}
+
+{% block app_content %}
+	{% content_box huge_auto_rect %}
+		<a href="{% url 'player_create_radio' %}">New RadioChannel</a>
+		<table>
+		{% for channel in object_list %}
+			<tr>
+				<td><a href="{% url 'player_update_radio' channel.id %}">{{ channel }}</a></td>
+
+				{% if perms.webradio.delete_channel %}
+					<td><a href="{% url 'player_delete_radio' channel.id %}">Delete Channel</a></td>
+				{% endif %}
+				{% if perms.webradio.change_channel %}
+					<td><a href="{% url 'player_update_radio' channel.id %}">Update Channels</a></td>
+				{% endif %}
+			</tr>
+		{% endfor %}
+		</table>
+	{% endcontent_box %}
+{% endblock %}

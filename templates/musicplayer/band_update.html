@@ -1,0 +1,19 @@
+{% extends 'musicplayer/base.html' %}
+{% comment %}
+This Template is generate by the generate_template.py script.
+It extends the AppBase Template, which should be generated if you generate your Apps
+with generate.py or generate_app.py.
+{% endcomment %}
+{% load raspberry_design %}
+
+{% block app_content %}
+	{% content_box huge_auto_rect %}
+	<table>
+	<form action="" method="post">
+		{% csrf_token %}
+		{{ form.as_table }}
+		<tr><td></td><td><input type="submit" value="Updaten" /></td></tr>
+	</form>
+	</table>
+	{% endcontent_box %}
+{% endblock %}

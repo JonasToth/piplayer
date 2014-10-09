@@ -1,0 +1,41 @@
+{% extends "musicplayer/base.html" %}
+{% load raspberry_design %}
+
+
+{% block app_content %}
+	{# {% content_box huge_auto_rect %} #}
+		{% content_box huge_auto_rect %}
+			{% if perms.webradio.can_control %}
+				{% include "musicplayer/player.html" %}
+			{% endif %}
+		{% endcontent_box %}
+		
+		{% content_box wide_auto_rect %}
+			<h2>RadioChannels</h2>
+			<ul>
+				{% for channel in channels %}
+					<li><a class="control_link" href="{% url 'play_channel' pk=channel.id %}">{{ channel.name }}</a></li>
+				{% endfor %}
+			</ul>
+		{% endcontent_box %}
+
+		{% content_box wide_auto_rect %}
+			<h2>Alben</h2>
+			<ul>
+				{% for album in albums %}
+					<li><a class="control_link" href="{% url 'play_album' pk=album.id %}">{{ album.name }}</a></li>
+				{% endfor %}
+			</ul>
+		{% endcontent_box %}
+		
+		{% content_box wide_auto_rect %}
+			<h2>Playlists</h2>
+			<ul>
+				{% for list in pls_test %}
+					<li><a class="control_link" href="{% url 'play_playlist' pk=list.id %}">{{ list.name }}</a></li>
+				{% endfor %}
+			</ul>
+		{% endcontent_box %}
+		
+	{# {% endcontent_box %} #}
+{% endblock %}

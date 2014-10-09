@@ -1,0 +1,16 @@
+{% extends 'musicplayer/base.html' %}
+{% load raspberry_design %}
+
+{% block app_content %}
+	{% content_box huge_auto_rect %}
+		<h2 class="deck">Really delete {{ album }}?</h2>
+		<p>
+		All items in the aggregator will be deleted, too. Because Jacob's
+		lazy, there's no "undo"!
+		</p>
+		<form class="wide" action="" method="post">
+		{% csrf_token %}
+		<p class="submit"><input type="submit" value="Yes, delete the Album."></p>
+		</form>
+	{% endcontent_box %}
+{% endblock %}
