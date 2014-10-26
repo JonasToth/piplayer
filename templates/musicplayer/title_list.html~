@@ -1,0 +1,43 @@
+{% extends 'musicplayer/base.html' %}
+
+{% comment %}
+This Template is generate by the generate_template.py script.
+It extends the AppBase Template, which should be generated if you generate your Apps
+with generate.py or generate_app.py.
+{% endcomment %}
+{% load raspberry_design %}
+
+{% block app_content %}
+	{% content_box huge_auto_rect %}
+	<a href="{% url 'player_create_title' %}">New Title</a>
+		<table>
+		{% for title in object_list %}
+			<tr>
+				<td><a href="{% url 'player_update_title' title.id %}">{{ title }}</a></td>
+
+				{% if perms.webradio.delete_title %}
+					<td><a class="delete_link" href="{% url 'player_delete_title' title.id %}">Delete Title</a></td>
+				{% endif %}
+				{% if perms.webradio.change_title %}
+					<td><a class="update_link" href="{% url 'player_update_title' title.id %}">Update Title</a></td>
+				{% endif %}
+			</tr>
+		{% endfor %}
+		</table>
+		{% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{% url 'player_edit_title' %}{{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{% url 'player_edit_title' %}{{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+	{% endcontent_box %}
+{% endblock %}
