@@ -14,7 +14,7 @@
 			<h2>RadioChannels</h2>
 			<ul>
 				{% for channel in channels %}
-					<li><a class="control_link" href="{% url 'play_channel' pk=channel.id %}">{{ channel.name }}</a></li>
+					<li><a class="control_link" href="{% url 'play_channel' pk=channel.id %}" onclick="playElement('Radio', {{ channel.id }}); return false;">{{ channel.name }}</a></li>
 				{% endfor %}
 			</ul>
 		{% endcontent_box %}
@@ -23,7 +23,7 @@
 			<h2>Alben</h2>
 			<ul>
 				{% for album in albums %}
-					<li><a class="control_link" href="{% url 'play_album' pk=album.id %}">{{ album.name }}</a></li>
+					<li><a class="control_link" href="{% url 'play_album' pk=album.id %}" onclick="playElement('Album', {{ album.id }}); return false;">{{ album.name }}</a></li>
 				{% endfor %}
 			</ul>
 		{% endcontent_box %}
@@ -32,7 +32,7 @@
 			<h2>Playlists</h2>
 			<ul>
 				{% for list in pls_test %}
-					<li><a class="control_link" href="{% url 'play_playlist' pk=list.id %}">{{ list.name }}</a></li>
+					<li><a class="control_link" href="{% url 'play_playlist' pk=list.id %}" onclick="playElement('Playlist', {{ list.id }}); return false;">{{ list.name }}</a></li>
 				{% endfor %}
 			</ul>
 		{% endcontent_box %}

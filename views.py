@@ -272,6 +272,7 @@ class TitleEdit(ListView):
 	With full permissions you can update/change and delete channels.
 	"""
 	model = Title
+	paginate_by = 20
 	#template_name = 'musicplayer/channel_edit.html'
 	#context_object_name = 'channels'
 

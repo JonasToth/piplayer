@@ -15,7 +15,7 @@ function next()
 	console.log("Next Title");
 	$.get(PLAYER_URL_NEXT);
 	
-	updateCurrentlyPlaying()
+	updateCurrentlyPlaying();
 }
 
 function previous()
@@ -40,7 +40,7 @@ function play()
 	console.log("Play mpc");
 	$.get(PLAYER_URL_PLAY);
 	
-	updateCurrentlyPlaying()
+	updateCurrentlyPlaying();
 }
 
 function stop()
@@ -48,7 +48,7 @@ function stop()
 	console.log("Stop mpc");
 	$.get(PLAYER_URL_STOP);
 	
-	updateCurrentlyPlaying()
+	updateCurrentlyPlaying();
 }
 
 function shuffle()
@@ -56,7 +56,26 @@ function shuffle()
 	console.log("Shuffle Playlist");
 	$.get(PLAYER_URL_SHUFFLE);
 	
-	updateCurrentlyPlaying()
+	updateCurrentlyPlaying();
 }
 
+function playElement(type, id)
+{
+	if([PLAYER_ATTRIBUTE_TITLE, PLAYER_ATTRIBUTE_ALBUM, PLAYER_ATTRIBUTE_BAND, PLAYER_ATTRIBUTE_GENRE, PLAYER_ATTRIBUTE_PLAYLIST, PLAYER_ATTRIBUTE_CHANNEL].indexOf(type) > -1)
+	{
+		typeString = type;
+	}
+	else
+	{
+		console.log("Typ für abspielen " + type + " existiert nicht!");
+		return false;
+	}
+	url = PLAYER_BASE_URL + typeString + "/" + String(id) + "/";
+	
+	$.get(url);
+
+	updateCurrentlyPlaying();
+	
+	return false;
+}
 setInterval(updateCurrentlyPlaying, 5000);
